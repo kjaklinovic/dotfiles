@@ -5,5 +5,4 @@ I use compton to highlight active window
 
 Current setup : 
 
-![Alt text](Pictures/redrain.jpg?raw=true "Title")
-![alt text](http://url/to/img.png)
+![Alt text](https://i.imgur.com/9f6AUuh.png)

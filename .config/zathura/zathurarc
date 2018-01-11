@@ -1,0 +1,6 @@
+set selection-clipboard clipboard
+set recolor-lightcolor "#36312F"
+set recolor-darkcolor  "#E5AF8E"
+set window-title-basename true
+set default-bg "#36312F"
+set completion-bg "#36312F"

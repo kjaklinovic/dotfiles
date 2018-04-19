@@ -1,0 +1,36 @@
+#
+#  ██████╗  ██████╗ ███████╗██╗
+#  ██╔══██╗██╔═══██╗██╔════╝██║
+#  ██████╔╝██║   ██║█████╗  ██║
+#  ██╔══██╗██║   ██║██╔══╝  ██║
+#  ██║  ██║╚██████╔╝██║     ██║
+#  ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝
+#
+#  KingKobra87's Rofi config
+#  https://www.github.com/kingkobra87/dotfiles
+#
+
+rofi.color-enabled: true
+
+!                  bg       border   separator
+rofi.color-window: #383838, #b5bd68, #8c9440
+
+!                  bg       fg       bg-alt   hl-bg    hl-fg
+rofi.color-normal: #383838, #5f5f5f, #303030, #b5bd68, #5f5f5f
+rofi.color-active: #8c9440, #383838, #de935f, #f0c674, #303030
+rofi.color-urgent: #a54242, #383838, #cc6666, #85678f, #303030
+
+rofi.terminal: urxvt 
+rofi.location: 0
+rofi.yoffset: 0
+rofi.xoffset: 0
+#rofi.font: TamzenForPowerline Regular 11
+#rofi.font: Gohu GohuFont Regular 12
+#rofi.font: xos4 Terminus 12
+rofi.font: Iosevka Medium 10
+rofi.bw: 1
+rofi.padding: 10
+rofi.lines: 20
+rofi.width: 25
+rofi.separator-style: solid
+rofi.hide-scrollbar: true

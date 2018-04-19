@@ -1,0 +1,450 @@
+; vim:ft=cfg
+;--------------------------------------------
+; colors                                    ;
+;--------------------------------------------
+
+[colors]
+
+	background = ${xrdb:background}
+	foreground = ${xrdb:foreground}
+
+	border_col = ${xrdb:background}
+
+	
+	black  = ${xrdb:color0}
+	red    = ${xrdb:color9}
+	green  = ${xrdb:color2}
+	yellow = ${xrdb:color3}
+	blue   = ${xrdb:color4}
+	magenta= ${xrdb:color5}
+	cyan  = ${xrdb:color6}
+	white  = ${xrdb:color7}
+	
+	black2  = ${xrdb:color8}
+	red2    = ${xrdb:color9}
+	green2  = ${xrdb:color2}
+	yellow2 = ${xrdb:color3}
+	blue2   = ${xrdb:color4}
+	magenta2= ${xrdb:color5}
+	cyan2   = ${xrdb:color6}
+	white2  = ${xrdb:color7}
+
+
+	prefix_bg = ${xrdb:color0}
+	prefix_fg = ${xrdb:color7}
+
+	module_fg = ${xrdb:color0}
+	spotify = "#1db954"
+
+;--------------------------------------------
+; bars                                      ;
+;--------------------------------------------
+
+[bar/base]
+	width    = 100%
+	height   = 16
+	offset-x = 0
+	offset-y = 0
+
+	bottom = falsee
+
+	background = ${colors.background}
+	; #000f0f0f
+	foreground = ${colors.foreground}
+
+	border-top-size     = 6
+	border-bottom-size  = 5
+	border-top-color    = ${colors.background}
+	border-bottom-color = ${colors.background}
+	; #000f0f0f
+
+	spacing            = 0
+	padding-left       = 2
+	padding-right      = 1
+	module-margin-left = 1
+
+	font-N = <fontconfig pattern>;<vertical offset>
+	font-0 = WunconSiji:size=4;2
+	font-1 = scientifica:pixelsize=8;2
+	font-2 = scientifica:pixelsize=8;2
+
+	modules-left   = cmus spotify 
+	modules-center = openbox 
+	modules-right  = volume temperature cpu battery date
+
+	tray-position = right
+	tray-padding = 2
+	tray-transparent = false
+
+	fixed-center = true
+	override-redirect = false
+    	; wm-restack   = bspwm 
+
+;--------------------------------------------
+; modules                                   ;
+;--------------------------------------------
+
+[module/network]
+	type          = internal/network
+	interface     = wlo1
+	ping-interval = 3
+
+[module/xwindow]
+	y-offset      = 10
+	type          = internal/xwindow
+	format        = <label>
+	label         = %title:0:50:%
+	label-padding = 1
+
+[module/date]
+	type     = internal/date
+	interval = 1.0
+	date     =
+	date-alt =  [ %a %d, %b |
+	time     = " %d %a %H:%M "
+	time-alt = %H:%M:%S ]
+	label    = %date% %time%
+
+	format         = <label>
+	format-padding = 0
+
+	format-prefix            = 
+	format-prefix-background = ${colors.prefix_bg}
+	format-prefix-foreground = ${colors.magenta}
+	format-prefix-padding    = 1
+
+	label-background = ${colors.magenta}
+	label-foreground = ${colors.module_fg}
+	label-padding    = 0
+
+[module/music]
+	type = internal/mpd
+
+	host = 127.0.0.1
+	port = 6600
+
+	interval = 2
+
+	format-online = <icon-prev><label-song>
+
+	label-song         = %title%
+	label-song-padding = 1
+
+	label                 = "%output:0:45:...%"
+	label-song-background = ${xrdb:color12}
+	label-song-foreground = ${colors.modules_fg}
+	label-padding-right   = 1
+
+	icon-prev            = 
+	icon-prev-background = ${xrdb:color12}
+	icon-prev-foreground = ${colors.modules_prefix_fg}
+	icon-prev-padding    = 1
+
+	format-online-prefix-padding = 1
+
+	click-left   = playerctl previous
+	click-middle = playerctl play-pause
+	click-right  = playerctl next
+
+[module/battery]
+	type          = internal/battery
+	full-at       = 99
+	battery       = BAT0
+	adapter       = AC
+	poll-interval = 5
+
+	format-charging = <label-charging>
+
+	format-charging-prefix            = 
+	format-charging-prefix-background = ${colors.prefix_bg}
+	format-charging-prefix-foreground = ${colors.green}
+	format-charging-prefix-padding    = 1
+
+	label-charging            = %percentage%%
+	label-charging-background = ${colors.green}
+	label-charging-foreground = ${colors.module_fg}
+	label-charging-padding    = 1
+
+	format-discharging = <label-discharging>
+
+	format-discharging-prefix            = 
+	format-discharging-prefix-background = ${colors.prefix_bg}
+	format-discharging-prefix-foreground = ${colors.green}
+	format-discharging-prefix-padding    = 1
+
+	label-discharging            = %percentage%%
+	label-discharging-background = ${colors.green}
+	label-discharging-foreground = ${colors.module_fg}
+	label-discharging-padding    = 1
+
+	format-full = <label-full>
+
+	format-full-prefix            = 
+	format-full-prefix-background = ${colors.prefix_bg}
+	format-full-prefix-foreground = ${colors.green}
+	format-full-prefix-padding    = 1
+
+	label-full            = "full"
+	; %percentage%%
+	label-full-background = ${colors.green}
+	label-full-foreground = ${colors.module_fg}
+	label-full-padding    = 1
+
+[module/volume]
+	type          = internal/volume
+	format-volume = <label-volume>
+
+	format-volume-prefix            = 
+	format-volume-prefix-background = ${colors.prefix_bg}
+	format-volume-prefix-foreground = ${colors.red}
+	format-volume-prefix-padding    = 1
+
+	label-volume            = %percentage%%
+	label-volume-background = ${colors.red}
+	label-volume-foreground = ${colors.module_fg}
+	label-volume-padding    = 1
+
+	format-muted = <label-muted>
+
+	format-muted-prefix            = 
+	format-muted-prefix-padding    = 1
+	format-muted-prefix-background = ${colors.prefix_bg}
+	format-muted-prefix-foreground = ${colors.red} 
+
+	label-muted            = ---
+	label-muted-foreground = ${colors.module_fg}
+	label-muted-background = ${colors.red}
+	label-muted-padding    = 1
+
+	format-volume-padding = 0
+	format-muted-padding  = 0
+
+	ramp-headphones-0 = 
+
+[module/cpu]
+	type             = internal/cpu
+	interval         = 2
+	format           = <label>
+	label            = %percentage%%
+	label-background = ${colors.yellow}
+	label-foreground = ${colors.module_fg}
+	label-padding    = 1
+
+	format-prefix = 
+
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.prefix_bg}
+	format-prefix-foreground = ${colors.yellow}
+
+[module/ram]
+	type     = internal/memory
+	interval = 3
+
+	format           = <label>
+	label            = "%percentage_used%%"
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding    = 1
+
+	format-prefix = 
+
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.ram_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+
+[module/essid]
+	inherit = module/network
+	; interface = wlo1
+
+	format-connected = <label-connected>
+
+	format-connected-prefix            = 
+	format-connected-prefix-padding    = 1
+	format-connected-prefix-background = ${colors.prefix_bg}
+	format-connected-prefix-foreground = ${colors.blue2}
+
+	label-connected            = %essid%
+	label-connected-background = ${colors.blue2}
+	label-connected-foreground = ${colors.module_fg}
+	label-connected-padding    = 1
+
+	ramp-signal-background    = ${colors.prefix_bg}
+	ramp-signal-foreground    = ${colors.blue2}
+	ramp-connected-foreground = ${colors.blue2}
+	ramp-signal-padding       = 1
+
+	format-disconnected = <label-disconnected>
+
+	format-disconnected-prefix            = 
+	format-disconnected-prefix-padding    = 1
+	format-disconnected-prefix-background = ${colors.prefix_bg}
+	format-disconnected-prefix-foreground = ${colors.blue2}
+
+	label-disconnected            = ---
+	label-disconnected-background = ${colors.blue2}
+	label-disconnected-foreground = ${colors.module_fg}
+	label-disconnected-padding    = 1
+	click-left = urxvt
+
+
+[module/down]
+	inherit = module/network
+
+	format-connected = <label-connected>
+
+	format-connected-prefix            = 
+	format-connected-prefix-background = ${colors.down_p_bg}
+	format-connected-prefix-foreground = ${colors.modules_prefix_fg}
+	format-connected-prefix-padding    = 1
+
+	label-connected               = %{T2}%downspeed:7%%{T-}
+	label-connected-background    = ${colors.modules_bg}
+	label-connected-foreground    = ${colors.modules_fg}
+	label-connected-padding-right = 1
+
+[module/padding]
+	type               = custom/text
+	content            = |
+	content-foreground = ${colors.bg}
+	content-background = ${colors.bg}
+
+[module/paddinglite]
+	type               = custom/text
+	content            = |
+	content-foreground = #000f0f0f
+	content-background = #000f0f0f
+
+[module/workspaces]
+
+	type            = internal/bspwm
+	; format          = <label-state> <label-mode>
+	; index-sort      = true
+	; wrapping-scroll = false
+	; strip-wsnumbers = true
+
+	; label-mode-background = ${colors.modules_bg}
+	; label-mode-foreground = ${colors.modules_prefix_fg}
+	; label-mode-padding    = 1
+
+	label-focused            = %name%
+	label-focused-background = ${colors.focused_bg}
+	label-focused-foreground = ${colors.modules_fg}
+	label-focused-padding    = 1
+
+	label-empty            = %name%
+	label-empty-background = ${colors.modules_bg}
+	label-empty-foreground = ${colors.modules_prefix_fg}
+	label-empty-padding    = 1
+
+	label-occupied            = %name%
+	label-occupied-background = ${colors.modules_bg}
+	label-occupied-foreground = ${colors.modules_prefix_fg}
+	label-occupied-padding    = 1
+
+	label-urgent            = %name%
+	label-urgent-background = ${xrdb:color1}
+	label-urgent-foreground = ${colors.modules_prefix_bg}
+	label-urgent-padding    = 1
+
+
+[module/openbox]
+	type                      = internal/xworkspaces
+	pin-workspaces            = true
+	enable-click              = true 
+	enable-scroll             = true 
+	format                    = <label-state>
+	label-monitor             = %name%
+	label-active              = %icon%%name%
+	label-active-foreground   = ${colors.green2}
+	label-active-background   = ${colors.prefix_bg}
+;	label-active-underline    = #fba922
+	label-active-padding      = 2
+	label-occupied            = %name%
+	label-occupied-background = ${colors.prefix_bg}
+	label-occupied-foreground = ${colors.red}
+	label-occupied-padding    = 2
+	label-urgent              = %index%
+ 	label-urgent-foreground   = ${colors.magenta} 
+	label-urgent-background   = ${colors.prefix_bg}
+; 	label-urgent-underline    = #9b0a20
+	label-empty               = %name%
+	label-empty-padding       = 2
+	label-empty-background    = ${colors.prefix_bg}
+	label-empty-foreground    = ${colors.black2}
+
+[module/backlight]
+	type = internal/backlight
+
+	output = LVDS-1
+
+	card          = acpi_video0
+	enable-scroll = false
+
+	format        = <label>
+	format-prefix = 
+
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.cpu_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+	label            = %percentage%%
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding    = 1
+
+[module/temperature]
+	type = internal/temperature
+	interval = 0.5
+	thermal-zone = 0
+
+	format = <label>
+	format-warn = <label-warn>
+
+	label = %temperature%
+	label-padding = 1
+	label-foreground = ${colors.module_fg}
+	label-background = ${colors.cyan}
+
+	label-warn = %temperature%
+	label-warn-foreground = ${colors.magenta}
+
+	format-prefix            = 
+	format-prefix-background = ${colors.prefix_bg}
+	format-prefix-foreground = ${colors.cyan}
+	format-prefix-padding    = 1
+
+[module/spotify]
+	type = custom/script
+	exec = sh ~/.config/polybar/spotify.sh
+	exec-if = pgrep -x spotify
+	interval = 1
+	
+	format-prefix = ""
+	format-prefix-padding = 1
+	format-padding = 1
+	format-prefix-foreground = ${colors.spotify}
+	format-prefix-background = ${colors.prefix_bg}
+	label-foreground = ${colors.module_fg}
+	label-background = ${colors.spotify}
+	click-left = playerctl play-pause
+	click-right = playerctl next
+	label = %output:0:60:...%
+	label-padding = 1
+
+[module/cmus]
+	type = custom/script
+	exec = sh ~/.config/polybar/music.sh
+	exec-if = pgrep -x cmus
+	interval = 1
+	
+	format-prefix = ""
+	format-prefix-padding = 1
+	label-padding = 1
+	format-prefix-foreground = ${colors.blue}
+	label-foreground = ${colors.module_fg}
+	format-prefix-background = ${colors.prefix_bg}
+	label-background = ${colors.blue}
+	click-left = cmus-remote --pause
+	click-right = cmus-remote -n
+	label = %output:0:60:...%

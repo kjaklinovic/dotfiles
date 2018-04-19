@@ -1,0 +1,58 @@
+! clean up urxvt, add keybinds
+URxvt.intensityStyles: false
+URxvt.scrollBar: false
+
+! URxvt.background: #282828
+! XTerm*background: #272822
+
+! font
+URxvt*font: xft:Knack Nerd Font:size=8:antialias=true:hinting=true
+! URxvt.font: xft:scientifica:size=12
+! URxvt*font: 9x15bold,xft:scientifica
+
+! DroidSansMono Nerd Font
+! URxvt.letterSpace: -1
+
+! terminal padding
+URxvt.internalBorder: 15 
+! URxvt*shading: 30
+! transparent terminal
+! URxvt.transparent:	true
+! URxvt.shading:		15
+
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+! clickable links, clipboard support, mouse wheel support, and on the fly font resizing
+! URxvt.perl-ext-common: default,matcher,clipboard,vtwheel,resize-font
+! URxvt.url-launcher: /usr/bin/chromium
+! URxvt.matcher.button: 1
+! URxvt.matcher.rend.0: Uline Bold fg6
+
+*.foreground: #dbdbdb
+*.background: #303030
+*.color0:     #383838
+*.color1:     #a54242
+*.color2:     #8c9440
+*.color3:     #de935f
+*.color4:     #5f819d
+*.color5:     #85678f
+*.color6:     #5e8d87
+*.color7:     #c0c0c0
+*.color8:     #5f5f5f
+*.color9:     #cc6666
+*.color10:    #b5bd68
+*.color11:    #f0c674
+*.color12:    #81a2be
+*.color13:    #b294bb
+*.color14:    #8abeb7
+*.color15:    #dbdbdb
+
+! Set depth to make transparency work.
+URxvt*depth: 32
+
